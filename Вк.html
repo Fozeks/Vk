@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>Александр Иванов | VK профиль</title>
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #edeef0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.4;
+            color: #2c3e50;
+            padding-bottom: 40px;
+        }
+
+        .vk-container {
+            max-width: 860px;
+            margin: 0 auto;
+            background-color: #edeef0;
+        }
+
+        /* Шапка профиля */
+        .profile-header {
+            background-color: #fff;
+            border-radius: 0 0 12px 12px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+            margin-bottom: 16px;
+            position: relative;
+        }
+
+        .cover {
+            height: 260px;
+            background: linear-gradient(145deg, #5d7b9f, #3a5a7c);
+            position: relative;
+            overflow: hidden;
+        }
+        .cover-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .avatar-section {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 0 20px 20px 20px;
+            margin-top: -72px;
+            position: relative;
+            align-items: flex-end;
+        }
+        .avatar {
+            flex-shrink: 0;
+            margin-right: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            border-radius: 50%;
+            border: 4px solid #fff;
+            background: white;
+        }
+        .avatar img {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            display: block;
+        }
+        .profile-info {
+            flex: 1;
+            padding-bottom: 10px;
+        }
+        .profile-name {
+            font-size: 28px;
+            font-weight: 600;
+            color: #000;
+            line-height: 1.2;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .online-badge {
+            background-color: #4bb34b;
+            color: white;
+            font-size: 11px;
+            font-weight: 500;
+            padding: 2px 8px;
+            border-radius: 12px;
+        }
+        .profile-status {
+            font-size: 14px;
+            color: #6f7a8a;
+            margin-bottom: 12px;
+        }
+        .profile-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            font-size: 13px;
+            color: #2c3e50;
+        }
+        .detail-item i {
+            width: 18px;
+            color: #7f8c8d;
+            margin-right: 6px;
+        }
+        .edit-btn {
+            background-color: #e7e8ec;
+            padding: 5px 12px;
+            border-radius: 16px;
+            font-size: 12px;
+            font-weight: 500;
+            color: #2c3e50;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .edit-btn:hover {
+            background-color: #d0d2d6;
+        }
+
+        /* Навигация */
+        .profile-nav {
+            background: #fff;
+            border-top: 1px solid #e7e8ec;
+            border-bottom: 1px solid #e7e8ec;
+            padding: 0 20px;
+            margin-top: 8px;
+            overflow-x: auto;
+        }
+        .nav-list {
+            display: flex;
+            list-style: none;
+            gap: 28px;
+        }
+        .nav-list li {
+            padding: 16px 0;
+            font-weight: 500;
+            font-size: 14px;
+            color: #656e7a;
+            cursor: default;
+            border-bottom: 2px solid transparent;
+            white-space: nowrap;
+        }
+        .nav-list li.active {
+            color: #2c81e0;
+            border-bottom-color: #2c81e0;
+        }
+
+        /* Основной контент */
+        .profile-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            padding: 0 16px;
+        }
+        .left-column {
+            flex: 1;
+            min-width: 200px;
+        }
+        .right-column {
+            flex: 2;
+            min-width: 260px;
+        }
+
+        /* Карточки */
+        .card {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+            margin-bottom: 16px;
+            overflow: hidden;
+        }
+        .card-header {
+            padding: 14px 18px;
+            border-bottom: 1px solid #eef0f2;
+            font-weight: 600;
+            font-size: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .card-header a {
+            font-size: 12px;
+            font-weight: normal;
+            color: #2c81e0;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .card-body {
+            padding: 12px 18px;
+        }
+        .info-row {
+            display: flex;
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f2f5;
+        }
+        .info-label {
+            width: 100px;
+            color: #7f8c8d;
+        }
+        .friends-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-top: 8px;
+        }
+        .friend-item {
+            text-align: center;
+            width: 70px;
+        }
+        .friend-item img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .friend-name {
+            font-size: 12px;
+            margin-top: 6px;
+        }
+
+        /* Посты */
+        .post {
+            background: #fff;
+            border-radius: 12px;
+            margin-bottom: 16px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+        }
+        .post-header {
+            display: flex;
+            padding: 12px 16px;
+            align-items: center;
+        }
+        .post-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 12px;
+            object-fit: cover;
+        }
+        .post-author {
+            font-weight: 600;
+            font-size: 14px;
+            color: #000;
+        }
+        .post-time {
+            font-size: 12px;
+            color: #93969b;
+            margin-top: 2px;
+        }
+        .post-content {
+            padding: 0 16px 12px 16px;
+            font-size: 14px;
+            color: #1e1e2a;
+        }
+        .post-media {
+            margin: 12px 0 8px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .post-media img {
+            width: 100%;
+            border-radius: 10px;
+            max-height: 300px;
+            object-fit: cover;
+        }
+        .post-stats {
+            padding: 8px 16px;
+            border-top: 1px solid #eef0f2;
+            border-bottom: 1px solid #eef0f2;
+            display: flex;
+            gap: 20px;
+            color: #6f7a8a;
+            font-size: 13px;
+        }
+        .post-actions {
+            display: flex;
+            padding: 6px 12px;
+            justify-content: space-around;
+        }
+        .action-btn {
+            background: none;
+            border: none;
+            padding: 8px 16px;
+            font-size: 13px;
+            font-weight: 500;
+            color: #6f7a8a;
+            cursor: pointer;
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.1s;
+        }
+        .action-btn:hover {
+            background-color: #f2f3f5;
+        }
+        .action-btn.liked {
+            color: #e64646;
+        }
+        .action-btn.liked i {
+            font-weight: 900;
+        }
+
+        /* Комментарии */
+        .comments-section {
+            padding: 12px 16px;
+            background-color: #fafbfc;
+            border-top: 1px solid #eef0f2;
+        }
+        .comment {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 12px;
+            padding: 8px 0;
+        }
+        .comment-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .comment-content {
+            flex: 1;
+            background: #f0f2f5;
+            padding: 8px 12px;
+            border-radius: 18px;
+        }
+        .comment-author {
+            font-weight: 600;
+            font-size: 13px;
+            margin-bottom: 4px;
+        }
+        .comment-text {
+            font-size: 13px;
+            color: #1e1e2a;
+            word-break: break-word;
+        }
+        .comment-time {
+            font-size: 11px;
+            color: #8e9aab;
+            margin-top: 4px;
+        }
+        .add-comment {
+            display: flex;
+            gap: 10px;
+            margin-top: 12px;
+            align-items: center;
+        }
+        .add-comment input {
+            flex: 1;
+            background: #f0f2f5;
+            border: none;
+            border-radius: 24px;
+            padding: 10px 16px;
+            font-size: 13px;
+            outline: none;
+        }
+        .add-comment button {
+            background: #2c81e0;
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 24px;
+            font-weight: 500;
+            cursor: pointer;
+            font-size: 13px;
+        }
+        .add-comment button:active {
+            background: #1a66c0;
+        }
+
+        /* Форма создания нового поста */
+        .new-post-card {
+            background: #fff;
+            border-radius: 12px;
+            margin-bottom: 16px;
+            padding: 12px 16px;
+        }
+        .new-post-input {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+        .new-post-input input {
+            flex: 1;
+            background: #f5f7fa;
+            border: none;
+            border-radius: 24px;
+            padding: 12px 16px;
+            font-size: 14px;
+            outline: none;
+        }
+        .new-post-input button {
+            background: #2c81e0;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 24px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        @media (max-width: 680px) {
+            .avatar-section {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                margin-top: -50px;
+            }
+            .avatar {
+                margin-right: 0;
+                margin-bottom: 12px;
+            }
+            .profile-info {
+                text-align: center;
+            }
+            .profile-details {
+                justify-content: center;
+            }
+            .cover {
+                height: 180px;
+            }
+            .avatar img {
+                width: 100px;
+                height: 100px;
+            }
+            .profile-name {
+                font-size: 22px;
+                justify-content: center;
+            }
+            .edit-btn {
+                margin-top: 10px;
+            }
+            .nav-list {
+                gap: 16px;
+            }
+        }
+
+        .footer-note {
+            text-align: center;
+            font-size: 12px;
+            color: #8e9aab;
+            margin-top: 24px;
+            padding: 16px;
+        }
+    </style>
+</head>
+<body>
+<div class="vk-container">
+    <!-- Шапка профиля -->
+    <div class="profile-header">
+        <div class="cover">
+            <img class="cover-img" src="https://images.pexels.com/photos/2082949/pexels-photo-2082949.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="cover" 
+                 onerror="this.src='https://placehold.co/1280x360/4a76a8/white?text=Обложка'">
+        </div>
+        <div class="avatar-section">
+            <div class="avatar">
+                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="avatar">
+            </div>
+            <div class="profile-info">
+                <div class="profile-name">
+                    Александр Иванов
+                    <span class="online-badge"><i class="fas fa-circle" style="font-size: 8px; margin-right: 4px;"></i> online</span>
+                </div>
+                <div class="profile-status">Frontend-разработчик | Музыкант</div>
+                <div class="profile-details">
+                    <div class="detail-item"><i class="fas fa-map-marker-alt"></i> Москва, Россия</div>
+                    <div class="detail-item"><i class="fas fa-briefcase"></i> Яндекс.Практикум</div>
+                </div>
+            </div>
+            <div style="align-self: center;">
+                <span class="edit-btn" onclick="alert('Редактирование профиля (демо)')"><i class="fas fa-pen"></i> Редактировать</span>
+            </div>
+        </div>
+        <div class="profile-nav">
+            <ul class="nav-list">
+                <li class="active">Моя страница</li>
+                <li>Новости</li>
+                <li>Друзья <span style="font-weight:400">128</span></li>
+                <li>Фотографии</li>
+                <li>Видео</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="profile-content">
+        <!-- Левая колонка -->
+        <div class="left-column">
+            <div class="card">
+                <div class="card-header">Контактная информация</div>
+                <div class="card-body">
+                    <div class="info-row"><div class="info-label">Телефон</div><div>+7 (999) 123-45-67</div></div>
+                    <div class="info-row"><div class="info-label">Email</div><div>a.ivanov@vkexample.ru</div></div>
+                    <div class="info-row"><div class="info-label">Дата рождения</div><div>15 марта 1995</div></div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">Друзья <span style="font-weight: normal;">· 128</span></div>
+                <div class="card-body">
+                    <div class="friends-list">
+                        <div class="friend-item"><img src="https://randomuser.me/api/portraits/women/68.jpg"><div class="friend-name">Елена</div></div>
+                        <div class="friend-item"><img src="https://randomuser.me/api/portraits/men/45.jpg"><div class="friend-name">Дмитрий</div></div>
+                        <div class="friend-item"><img src="https://randomuser.me/api/portraits/women/33.jpg"><div class="friend-name">Анна</div></div>
+                        <div class="friend-item"><img src="https://randomuser.me/api/portraits/men/22.jpg"><div class="friend-name">Артем</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Правая колонка - лента с постами и комментариями -->
+        <div class="right-column" id="feedContainer">
+            <!-- Форма создания нового поста -->
+            <div class="new-post-card">
+                <div class="new-post-input">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" style="width: 40px; height:40px; border-radius: 50%;">
+                    <input type="text" id="newPostText" placeholder="Что у вас нового?" maxlength="300">
+                    <button id="publishPostBtn"><i class="fas fa-paper-plane"></i> Опубликовать</button>
+                </div>
+            </div>
+
+            <!-- Контейнер для постов -->
+            <div id="postsList"></div>
+        </div>
+    </div>
+    <div class="footer-note">VK · Полноценные комментарии и лайки · Адаптив под телефон</div>
+</div>
+
+<script>
+    // ========== ДАННЫЕ ПОСТОВ (стартовые) ==========
+    let posts = [
+        {
+            id: 1,
+            author: "Александр Иванов",
+            avatar: "https://randomuser.me/api/portraits/men/32.jpg",
+            time: "2 часа назад",
+            content: "Отличная прогулка по парку Горького! Осень в Москве невероятно красивая 🍂",
+            media: "https://images.pexels.com/photos/257360/pexels-photo-257360.jpeg?auto=compress&cs=tinysrgb&w=800",
+            likes: 124,
+            comments: [
+                { id: 101, author: "Елена", avatar: "https://randomuser.me/api/portraits/women/68.jpg", text: "Красота! Тоже люблю осенний парк ❤️", time: "1 час назад" },
+                { id: 102, author: "Дмитрий", avatar: "https://randomuser.me/api/portraits/men/45.jpg", text: "Отличные фото!", time: "50 минут назад" }
+            ]
+        },
+        {
+            id: 2,
+            author: "Александр Иванов",
+            avatar: "https://randomuser.me/api/portraits/men/32.jpg",
+            time: "вчера в 19:45",
+            content: "Закончил новый мини-проект — дашборд для трекинга привычек. Написал на React и Express. Очень доволен результатом! Код выложил на GitHub.",
+            media: "",
+            likes: 89,
+            comments: [
+                { id: 201, author: "Анна", avatar: "https://randomuser.me/api/portraits/women/33.jpg", text: "Круто! Закинь ссылку в личку", time: "вчера в 21:10" }
+            ]
+        },
+        {
+            id: 3,
+            author: "Александр Иванов",
+            avatar: "https://randomuser.me/api/portraits/men/32.jpg",
+            time: "3 дня назад",
+            content: "Вчера отлично посидели с друзьями, записали кавер на группу 'Кино' 🎸",
+            media: "https://images.pexels.com/photos/164829/pexels-photo-164829.jpeg?auto=compress&cs=tinysrgb&w=800",
+            likes: 203,
+            comments: [
+                { id: 301, author: "Артем", avatar: "https://randomuser.me/api/portraits/men/22.jpg", text: "Кино — легенда! Жду премьеру кавера", time: "2 дня назад" }
+            ]
+        }
+    ];
+
+    let nextPostId = 4;
+    let nextCommentId = 400;
+
+    // Функция рендеринга всех постов
+    function renderFeed() {
+        const container = document.getElementById('postsList');
+        if (!container) return;
+
+        container.innerHTML = '';
+        posts.forEach(post => {
+            const postDiv = document.createElement('div');
+            postDiv.className = 'post';
+            postDiv.dataset.postId = post.id;
+
+            // Шапка поста
+            postDiv.innerHTML = `
+                <div class="post-header">
+                    <img class="post-avatar" src="${post.avatar}" alt="avatar">
+                    <div>
+                        <div class="post-author">${escapeHtml(post.author)}</div>
+                        <div class="post-time">${escapeHtml(post.time)} · <i class="fas fa-globe"></i></div>
+                    </div>
+                </div>
+                <div class="post-content">
+                    ${escapeHtml(post.content)}
+                    ${post.media ? `<div class="post-media"><img src="${post.media}" alt="post image" onerror="this.style.display='none'"></div>` : ''}
+                </div>
+                <div class="post-stats">
+                    <span class="likes-count" data-postid="${post.id}"><i class="far fa-heart"></i> ${post.likes}</span>
+                    <span><i class="far fa-comment"></i> ${post.comments.length}</span>
+                </div>
+                <div class="post-actions">
+                    <button class="action-btn like-btn" data-id="${post.id}"><i class="far fa-heart"></i> Нравится</button>
+                    <button class="action-btn comment-toggle-btn" data-id="${post.id}"><i class="far fa-comment"></i> Комментировать</button>
+                </div>
+                <div class="comments-section" id="comments-${post.id}" style="display: none;">
+                    <div class="comments-list" id="comments-list-${post.id}"></div>
+                    <div class="add-comment">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" class="comment-avatar" style="width:32px;height:32px;">
+                        <input type="text" id="comment-input-${post.id}" placeholder="Написать комментарий..." maxlength="200">
+                        <button class="submit-comment" data-id="${post.id}">Отправить</button>
+                    </div>
+                </div>
+            `;
+
+            container.appendChild(postDiv);
+
+            // Отрисовка комментариев внутри
+            const commentsListDiv = postDiv.querySelector(`#comments-list-${post.id}`);
+            renderComments(post.id, commentsListDiv);
+
+            // Обработчики
+            const likeBtn = postDiv.querySelector(`.like-btn`);
+            likeBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                toggleLike(post.id);
+            });
+
+            const commentToggle = postDiv.querySelector(`.comment-toggle-btn`);
+            const commentsSection = postDiv.querySelector(`.comments-section`);
+            commentToggle.addEventListener('click', () => {
+                const isVisible = commentsSection.style.display === 'none' || commentsSection.style.display === '';
+                commentsSection.style.display = isVisible ? 'block' : 'none';
+            });
+
+            const submitCommentBtn = postDiv.querySelector(`.submit-comment`);
+            const commentInput = postDiv.querySelector(`#comment-input-${post.id}`);
+            submitCommentBtn.addEventListener('click', () => {
+                const text = commentInput.value.trim();
+                if (text === '') {
+                    alert('Напишите текст комментария');
+                    return;
+                }
+                addComment(post.id, text);
+                commentInput.value = '';
+                // Показываем секцию комментариев, если скрыта
+                if (commentsSection.style.display === 'none') {
+                    commentsSection.style.display = 'block';
+                }
+            });
+        });
+    }
+
+    function renderComments(postId, container) {
+        const post = posts.find(p => p.id === postId);
+        if (!post) return;
+        container.innerHTML = '';
+        post.comments.forEach(comment => {
+            const commentDiv = document.createElement('div');
+            commentDiv.className = 'comment';
+            commentDiv.innerHTML = `
+                <img class="comment-avatar" src="${comment.avatar}" alt="avatar">
+                <div class="comment-content">
+                    <div class="comment-author">${escapeHtml(comment.author)}</div>
+                    <div class="comment-text">${escapeHtml(comment.text)}</div>
+                    <div class="comment-time">${escapeHtml(comment.time)}</div>
+                </div>
+            `;
+            container.appendChild(commentDiv);
+        });
+    }
+
+    function addComment(postId, text) {
+        const post = posts.find(p => p.id === postId);
+        if (!post) return;
+        const newComment = {
+            id: nextCommentId++,
+            author: "Александр Иванов",
+            avatar: "https://randomuser.me/api/portraits/men/32.jpg",
+            text: text,
+            time: "только что"
+        };
+        post.comments.push(newComment);
+        renderFeed(); // полный рендер для обновления счетчика и комментариев
+        // после рендера раскрыть комментарии текущего поста
+        setTimeout(() => {
+            const commentsSection = document.querySelector(`#comments-${postId}`);
+            if (commentsSection) commentsSection.style.display = 'block';
+        }, 10);
+    }
+
+    function toggleLike(postId) {
+        const post = posts.find(p => p.id === postId);
+        if (post) {
+            // имитация like/unlike (просто увеличиваем/уменьшаем для демо)
+            // для полноты добавим простую логику
+            const wasLiked = post.userLiked;
+            if (wasLiked) {
+                post.likes--;
+                post.userLiked = false;
+            } else {
+                post.likes++;
+                post.userLiked = true;
+            }
+            renderFeed();
+        }
+    }
+
+    function createNewPost(content) {
+        if (!content.trim()) {
+            alert('Введите текст поста');
+            return;
+        }
+        const newPost = {
+            id: nextPostId++,
+            author: "Александр Иванов",
+            avatar: "https://randomuser.me/api/portraits/men/32.jpg",
+            time: "только что",
+            content: content,
+            media: "",
+            likes: 0,
+            comments: [],
+            userLiked: false
+        };
+        posts.unshift(newPost); // новый пост в начало ленты
+        renderFeed();
+    }
+
+    // Helper
+    function escapeHtml(str) {
+        if (!str) return '';
+        return str.replace(/[&<>]/g, function(m) {
+            if (m === '&') return '&amp;';
+            if (m === '<') return '&lt;';
+            if (m === '>') return '&gt;';
+            return m;
+        }).replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, function(c) {
+            return c;
+        });
+    }
+
+    // Инициализация и публикация
+    document.addEventListener('DOMContentLoaded', () => {
+        renderFeed();
+
+        const publishBtn = document.getElementById('publishPostBtn');
+        const newPostInput = document.getElementById('newPostText');
+        if (publishBtn) {
+            publishBtn.addEventListener('click', () => {
+                createNewPost(newPostInput.value);
+                newPostInput.value = '';
+            });
+        }
+        // Enter в поле нового поста
+        if (newPostInput) {
+            newPostInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    createNewPost(newPostInput.value);
+                    newPostInput.value = '';
+                }
+            });
+        }
+    });
+</script>
+</body>
+</html>
