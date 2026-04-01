@@ -4,7 +4,10 @@
   "private": true,
 "version": "0.0.1",
 "type": "module",
-
+"scripts": {
+"build": "[my-framework] build --output public",
+"dev": "vite"
+},
 "dependencies": {
 "@emotion/react": "11.14.0",
 "@emotion/styled": "11.14.1",
